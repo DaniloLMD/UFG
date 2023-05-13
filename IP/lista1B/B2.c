@@ -1,19 +1,22 @@
-#include <stdio.h>
+#include<stdio.h>
 
 int main(){
-	int n, contador;
-	
-	scanf("%d", &n);
-	if (n <= 5 || n >= 2000){
-		return 0;
-	}
-	
-	for (contador = 1; contador <= n; contador++){
-		if ( contador % 2 == 0){
-			printf("%dˆ2 = %d\n", contador, contador * contador);
-		}
-	
-	}
-	
+
+    int contador;
+    int num;
+    int quadrado;
+
+    scanf("%d", &num);
+
+    if((num > 5) && (num < 2000)){
+
+        for(contador = 2; contador <= num; contador += 2){
+			if(contador % 2 == 0){
+		        quadrado = contador * contador;
+		        printf("%d^2 = %d\n", contador, quadrado);
+	        }
+        }
+
+    }
 	return 0;
 }
