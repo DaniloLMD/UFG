@@ -1,46 +1,29 @@
 #include <stdio.h>
 
-int main(){
-	int n;
-	int num1 = 220;
-	int num2 = 284;
-	int divisores1, divisores2;
-	int amigosExibidos = 0;
-	int contador;
-	
-	scanf("%d", &n);
-	
-	if(n > 9){
-		return 0;
-	}
-	while(amigosExibidos < n){
-		for(contador = 1; contador < num1; contador++){
-			if(num1 % contador == 0){
-				divisores1 +=  contador;
-			}
-		}
-		for(contador = 1; contador < num2; contador++){
-			if(num2 % contador == 0){
-				divisores2 +=  contador;
-			}
-		}
-		
-		if(divisores1 == num2 && divisores2 == num1 && num1 != num2){
-			printf("(%d,%d)\n", num1, num2);
-			amigosExibidos += 1;
-			num2 = num1;
-			num1++;
-		}
-		if(num2 >= 2*num1){
-			num2 = num1;
-			num1++;
-		}
-		divisores1 = 0;
-		divisores2 = 0;
-		num2++;
-		
-	}
-	
+int somaDiv(int x){
+    int c, s = 0;
+    for(c = 1; c <= (x/2); c++){
+        if(x % c == 0){
+            s += c;
+        }
+    }
+    return s;
+}
 
-	return 0;
+int main(){
+    int qtd, exibidos = 0, cont = 1;
+    int n1 = 220, s1 = 0, n2, s2 = 0;
+    scanf("%d", &qtd);
+
+    while(qtd > exibidos){
+        s1 = somaDiv(n1);
+        n2 = s1;
+        s2 = somaDiv(n2);
+        if(s2 == n1 && s1 == n2 && n1 < n2){
+            printf("(%d,%d)\n", n1, n2);
+            exibidos++;
+        }
+        n1++;
+    }
+    return 0;
 }
