@@ -10,7 +10,7 @@ int main(){
         scanf("%[^\n]%*c", v);
  
         for(c = 0; v[c] != '\0'; c++){
-            if(v[c] >= 65 && v[c] <= 90 || v[c] >= 97 && v[c] <= 122){
+            if(v[c] >= 'A' && v[c] <= 'Z' || v[c] >= 'a' && v[c] <= 'z'){
                 letras++;
                 if(v[c] == 'A' || v[c] == 'E' || v[c] == 'I' || v[c] == 'O' ||
                 v[c] == 'U' || v[c] == 'a' || v[c] == 'e' || v[c] == 'i' || v[c] == 'o' || v[c] == 'u') vogais++;
