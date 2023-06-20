@@ -22,7 +22,7 @@ void remove_vogais( char * str, int * vogais ){
                 }
             }
         }
-        if(!vogal || str[c] == ' '){
+        if(!vogal){
             t[c3] = str[c];
             c3++;
         }

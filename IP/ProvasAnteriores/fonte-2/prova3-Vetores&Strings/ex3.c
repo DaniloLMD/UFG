@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 double decimal(int exp){
     if(exp == 0) return 1;
     else if(exp > 0) return 10 * decimal(exp - 1);
@@ -26,13 +25,13 @@ double string2double( const char * str ){
         if(!ponto) qtdAtePonto++;
     }
     if(neg) qtdAtePonto--;
+
     for(c = 0; str[c] != '\0'; c++){
         if(str[c] >= '0' && str[c] <= '9'){
             num += (str[c] - '0') * decimal(qtdAtePonto);
             qtdAtePonto--;
         }
     }
-
 
     if(neg) num *= -1;
     return num; 
@@ -46,8 +45,6 @@ int main(){
         n = string2double(v);
         printf("%.3lf %.3lf\n", n, n*2);
     }
-
-
 
     return 0;
 }
