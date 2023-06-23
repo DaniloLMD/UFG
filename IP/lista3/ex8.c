@@ -43,8 +43,3 @@ int main(){
     }
     return 0;
 }
-
-//abc
-//def - 1
-//fed - 2
-//fdc - 3
