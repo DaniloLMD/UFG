@@ -1,78 +1,83 @@
 #include <stdio.h>
+ 
+int exibidos = 0;
+int max, minLin, maxLin, minCol, maxCol;
+int matriz[10][10];
+ 
+int minToMax(void){
+    int i, j;
 
+    // minCol -> maxCol
+    for(j = minCol; j <= maxCol; j++){
+        printf("%d ", matriz[minLin][j]);
+        exibidos++;
+        if(exibidos == max) return -1;
+    }
+    minLin++;
+ 
+    // minLin -> maxLin    
+    for(i = minLin; i <= maxLin; i++){
+        printf("%d ", matriz[i][maxCol]);
+        exibidos++;
+        if(exibidos == max) return -1;
+    }
+    maxCol--;
+ 
+    return 1;
+}
+ 
+int maxToMin(void){
+    int i, j;
+
+    // maxCol -> minCol
+    for(j = maxCol; j >= minCol; j--){
+        printf("%d ", matriz[maxLin][j]);
+        exibidos++;
+        if(exibidos == max) return -1;
+    }
+    maxLin--;    
+    
+    // maxLin -> minLin    
+    for(i = maxLin; i >= minLin; i--){
+        printf("%d ", matriz[i][minCol]);
+        exibidos++;
+        if(exibidos == max) return -1;
+    }
+    minCol++;
+    
+    return 0;
+}
+ 
 int main(){
-    int lin, col, i, j, minLin, maxLin, minCol, maxCol, qtd = 0;
-    int m[10][10];
-
-    scanf("%d %d", &i, &j);
-
-    if(i > 10 || i < 1 || j > 10 || j < 0){
+    int alternador = 0;
+    int lin, col, i, j;
+    
+    //lendo as dimensoes da matriz
+    scanf("%d %d", &lin, &col);
+    if(lin > 10 || lin < 1 || col > 10 || col < 1){
         printf("Dimensao invalida\n");
         return 0;
     }
-
-
-    for(lin = 0; lin < i; lin++){
-        for(col = 0; col < j; col++){
-            scanf("%d", &m[lin][col]);
-        }
+    
+    
+    //lendo a matriz
+    for(i = 0; i < lin; i++){
+        for(j = 0; j < col; j++) scanf("%d", &matriz[i][j]);
     }
-
-    minLin = 0;
-    maxLin = i - 1;
-    maxCol = j - 1;
-    while(1){
-
-        if(minLin < i && maxLin > 0 && minCol < j && maxCol > 0){
-        //printando a menor linha
-            lin = minLin;
-            for(col = minCol; col <= maxCol && qtd < i * j; col++){
-                qtd++;
-                printf("%d ", m[lin][col]);
-            }
-
-            minLin++;
-
-            //printando  a ultima coluna
-            col = maxCol;
-            for(lin = minLin; lin <= maxLin && qtd < i * j; lin++){
-                qtd++;
-                printf("%d ", m[lin][col]);
-            }
-
-            maxCol--;
-            //printando a ultima linha
-            lin = maxLin;    
-            for(col = maxCol; col >= minCol && qtd < i * j; col--){
-                qtd++;
-                printf("%d ", m[lin][col]);
-            }
-
-            maxLin--;
-            //printando a menor coluna
-            col = minCol;
-            for(lin = maxLin; lin >= minLin && qtd < i * j; lin--){
-                qtd++;
-                printf("%d ", m[lin][col]);
-            }
-            minCol++;
+    
+    
+    max = lin * col;
+    minLin = minCol = 0;
+    maxLin = lin - 1;
+    maxCol = col - 1;
+    //printando a matriz em espiral    
+    while(alternador != -1){
+        if(alternador == 0){
+            alternador = ( minToMax());
         }
-        else if(minLin >= i || maxLin <= 0){
-            lin = maxLin;
-            for(col = minCol; col <= maxCol && qtd < i * j; col++){
-                qtd++;
-                printf("%d ", m[lin][col]);
-            }
+        else if(alternador == 1){
+            alternador = ( maxToMin());
         }
-        else if(minCol >= j || maxCol <= 0){
-            col = maxCol;
-            for(lin = minLin; lin <= maxLin && qtd < i * j; lin++){
-                qtd++;
-                printf("%d ", m[lin][col]);
-            }
-        }
-
-        if(qtd >= i * j) break;
     }
     
     printf("\n");
