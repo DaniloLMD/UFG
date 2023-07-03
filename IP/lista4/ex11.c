@@ -1,15 +1,5 @@
 #include <stdio.h>
- 
- 
-void zeraVetorI(int *v, int tamanho){
-     int c;
-     for(c = 0; c < tamanho; c++) v[c] = 0;
- }
-void zeraVetorD(double *v, int tamanho){
-     int c;
-     for(c = 0; c < tamanho; c++) v[c] = 0;
- }
- 
+
 /**
 * @param valor numero a ser checado
 * @param *v vetor 
@@ -110,7 +100,6 @@ void Polinomios(char operacao){
         }
         printf("\n");
 }
- 
  
 int main(){
     char operacao;
