@@ -16,8 +16,15 @@ int fibonacci( int t1, int t2, int n){
     }else if(n == 2){
         return t2;
     }
-    
 }
+
+int fibonacci_r(int t1, int t2, int n){
+	if(n == 1) return t1;
+	if(n == 2) return t2;
+	return fibonacci_r(t1, t2, n - 1) + fibonacci_r(t1, t2, n - 2);
+}
+
+
 
 int main(){
     int a, b, c;
