@@ -45,7 +45,7 @@ tRacional mult(tRacional r1, tRacional r2){
 }
 
 //divisao
-tRacional div(tRacional r1, tRacional r2){
+xtRacional div(tRacional r1, tRacional r2){
 	tRacional t;
 	t.a = r1.a * r2.b;
 	t.b = r1.b * r2.a;

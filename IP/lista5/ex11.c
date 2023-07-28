@@ -41,11 +41,20 @@ int main(){
 		v[i].consumo_medio = v[i].tot_consumo / v[i].tot_pessoas;
 	}
 	
+	//teste
+	printf("qtd_cidades = %d\n", qtd_cidades);
+	printf("c_medio c1 = %.2lf\n", v[0].consumo_medio);
+	printf("qtd_imov c1 = %d\n", v[0].qtd_imov);
+	printf("tot_pessoas c1 = %d\n", v[0].tot_pessoas);
+	printf("teste 1 c1 = %d\n", v[0].consumos[0]);
+	printf("teste 2 c1 = %d\n", v[0].consumos[1]);
+	printf("teste 3 c1 = %d\n", v[0].consumos[2]);
+	
 	//printando
 	for(c = 0; c < qtd_cidades; c++){
 		printf("Cidade# %d:\n", c+1);
 		for(c2 = 0; c2 < v[c].qtd_imov; c++){
-			printf("%d-%d ",v[c].pessoas[c], v[c].consumos[c] / v[c].consumos[c]);
+			printf("%d-%d ",v[c].pessoas[c2], v[c].consumos[c2] / v[c].pessoas[c2]);
 		}
 		printf("\n");
 		printf("Consumo medio: %.2lf m3.", v[c].consumo_medio);
