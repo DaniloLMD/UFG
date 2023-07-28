@@ -4,10 +4,27 @@
 typedef char bool;
 
 typedef struct{
-	float valor
+	float valor;
 	int potencia;
 	bool considerado;
 }polinomio;
+
+void ordena(polinomio* v, int tam){
+	polinomio t;
+	int m;	
+	int c;
+	for(c = 0; c < tam; c++){
+		for (m = 0; m < tam -1; m++) {
+			if ( v[m].potencia < v[m+1].potencia){
+				t = v[m];
+				v[m] = v[m+1];
+				v[m+1] = t;
+			}
+		}
+	}
+	
+	
+}
 
 int main(){
 	int qtd;
@@ -39,7 +56,7 @@ int main(){
 		
 		for(c = 0; c < t1; c++){
 			achou_igual = 0;
-			v = (polinomio*) realloc((i+1) * sizeof(polinomio));
+			v = (polinomio*) realloc(v, (i+1) * sizeof(polinomio));
 			for(c2 = 0; c2 < t2; c2++){
 				if(n1[c].potencia == n2[c2].potencia){
 					achou_igual = 1;
@@ -53,21 +70,25 @@ int main(){
 				v[i].valor = n1[c].valor;
 			}
 			i++;
-	}
-	for(c = 0; c < t2; c++){
-		if(n2[c].considerado == 0){
-			v[i].potencia = n2[c].potencia;
-			v[i].valor = n2[c].valor;
-			i++;
 		}
+		for(c = 0; c < t2; c++){
+			if(n2[c].considerado == 0){
+				v[i].potencia = n2[c].potencia;
+				v[i].valor = n2[c].valor;
+				i++;
+			}
+		}
+		
+		ordena(v, i);
+		
+		for(c = 0; c < i; c++){
+			printf("%+.2fX^%d", v[c].valor, v[c].potencia);
+		}
+		printf("\n");
+		free(v);
+		free(n1);
+		free(n2);
 	}
-	
-	ordena(v);
-	
-	
-	
-	
-	
 	
 	return 0;
 }
