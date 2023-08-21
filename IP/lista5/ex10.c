@@ -1,94 +1,127 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-typedef char bool;
-
-typedef struct{
-	float valor;
-	int potencia;
-	bool considerado;
-}polinomio;
-
-void ordena(polinomio* v, int tam){
-	polinomio t;
-	int m;	
-	int c;
-	for(c = 0; c < tam; c++){
-		for (m = 0; m < tam -1; m++) {
-			if ( v[m].potencia < v[m+1].potencia){
-				t = v[m];
-				v[m] = v[m+1];
-				v[m+1] = t;
-			}
-		}
-	}
-	
-	
+ 
+ 
+void zeraVetorI(int *v, int tamanho){
+     int c;
+     for(c = 0; c < tamanho; c++) v[c] = 0;
+ }
+void zeraVetorD(double *v, int tamanho){
+     int c;
+     for(c = 0; c < tamanho; c++) v[c] = 0;
+ }
+ 
+/**
+* @param valor numero a ser checado
+* @param *v vetor 
+* @param tamV tamanho do vetor
+* @return -1(F) ou C2(indice que tem o numero no 2 vetor) se o elemento ta nos 2 vetores
+*/
+int temNosDois(int valor, int *v, int tamV){
+    int c, c2 = 0;
+    
+    for(c = 0; c < tamV; c++){
+        if(v[c] == valor) return c;
+    }
+ 
+    return -1;
 }
-
+ 
+//retorna a soma de 2 numeros, trocando o sinal do segundo se a operacao for '-'
+double somatorio(char operacao, double n1, double n2){
+    if(operacao == '-') n2 *= -1;
+    return n1 + n2;
+}
+ 
+//retorna quantidade de termos em comum entre 2 vetores
+int intersec(int *v1, int *v2, int tamanho, int tamanho2){
+    int c, c2, comuns = 0;
+    for(c = 0; c < tamanho; c++){
+        for(c2 = 0; c2 < tamanho2; c2++){
+            if(v1[c] == v2[c2]) comuns++;
+        }
+    }
+    
+    return comuns;
+}
+ 
+void Polinomios(char operacao){
+    int  indice;
+    double numero, num1[50], num2[50];
+    int exp1[50], exp2[50];
+    int c, c2, qtdTermos1, qtdTermos2, qtdTermosFim;
+    double numFim[100];
+    int expFim[100], maiorExp;
+        
+        //lendo termos do 1 polinomio
+        scanf("%d%*c", &qtdTermos1);
+        for(c = 0; c < qtdTermos1; c++) scanf("%lf %d%*c", &num1[c], &exp1[c]);    
+        
+        
+        //lendo termos do 2 polinomio
+        scanf("%d%*c", &qtdTermos2);
+        for(c = 0; c < qtdTermos2; c++) scanf("%lf %d%*c", &num2[c], &exp2[c]);        
+            
+        //fazendo as operacoes com todos os expoentes do 1 vetor
+        for(c = 0; c < qtdTermos1; c++){
+            indice = temNosDois(exp1[c], exp2, qtdTermos2);
+            if(indice != -1){
+                numero = somatorio(operacao, num1[c], num2[indice]);
+            }
+            else numero = num1[c];
+            
+            numFim[c] = numero;
+            expFim[c] = exp1[c];
+        }    
+        
+        //fazendo as operacoes com os expoentes que não estão no 1 vetor
+        
+        for(c2 = 0; c2 < qtdTermos2; c2++){
+            indice = temNosDois(exp2[c2], exp1, qtdTermos1);
+            if(indice == -1){
+                numero = num2[c2];
+                if(operacao == '-') numero *= -1;
+                numFim[c] = numero;
+                expFim[c] = exp2[c2];
+                c++;
+            }
+        }
+        
+        //rodando o vetor do numFim
+        qtdTermosFim = qtdTermos1 + qtdTermos2 - intersec(exp1, exp2, qtdTermos1, qtdTermos2);
+        for(c2 = 0; c2 < qtdTermosFim; c2++){
+            //pegando o maior expoente
+            maiorExp = expFim[0];
+            indice = 0;
+            for(c = 0; c < qtdTermosFim; c++){
+                if(expFim[c] > maiorExp){
+                    maiorExp = expFim[c];
+                    indice = c;
+                }
+            }
+            //printando o numero e o maior expoente
+            if(numFim[indice] > 0) printf("+");
+            
+            if(numFim[indice] == 0);
+            else{
+                if(maiorExp == 0) printf("%.2lf", numFim[indice]);
+                else printf("%.2lfX^%d", numFim[indice], expFim[indice]);
+            }
+            expFim[indice] = -1; //retirando o maior exp
+        }
+        printf("\n");
+}
+ 
+ 
 int main(){
-	int qtd;
-	char op;
-	int t1, t2, c, c2, i = 0;
-	bool achou_igual;
-	polinomio *v, *n1, *n2;
-	
-	scanf("%d%*c", &qtd);
-	while(qtd--){
-		i = 0;
-		//lendo a operacao
-		scanf("%c", &op);
-		//lendo o tamanho do 1 polinomio
-		scanf("%d", &t1);
-		n1 = (polinomio*) malloc(t1 * sizeof(polinomio));
-		for(c = 0; c < t1; c++){
-			scanf("%f %d", &n1[c].valor, &n1[c].potencia);
-		}
-		
-		//lendo o tamanho do 2 polinomio
-		scanf("%d", &t2);
-		n2 = (polinomio*) malloc(t2 * sizeof(polinomio));
-		for(c = 0; c < t2; c++){
-			scanf("%f %d", &n2[c].valor, &n2[c].potencia);
-			if(op == '-') n2[c].valor *= -1;
-			n2[c].considerado = 0;
-		}
-		
-		for(c = 0; c < t1; c++){
-			achou_igual = 0;
-			v = (polinomio*) realloc(v, (i+1) * sizeof(polinomio));
-			for(c2 = 0; c2 < t2; c2++){
-				if(n1[c].potencia == n2[c2].potencia){
-					achou_igual = 1;
-					n2[c2].considerado = 1;
-					v[i].potencia = n1[c].potencia;
-					v[i].valor = n1[c].valor + n2[c2].valor;
-				}	
-			}
-			if(!achou_igual){
-				v[i].potencia = n1[c].potencia;
-				v[i].valor = n1[c].valor;
-			}
-			i++;
-		}
-		for(c = 0; c < t2; c++){
-			if(n2[c].considerado == 0){
-				v[i].potencia = n2[c].potencia;
-				v[i].valor = n2[c].valor;
-				i++;
-			}
-		}
-		
-		ordena(v, i);
-		
-		for(c = 0; c < i; c++){
-			printf("%+.2fX^%d", v[c].valor, v[c].potencia);
-		}
-		printf("\n");
-		free(v);
-		free(n1);
-		free(n2);
-	}
-	
-	return 0;
+    char operacao;
+    int testes;
+    
+    scanf("%d%*c", &testes);
+       
+    while(testes--){
+        scanf("%c%*c", &operacao);
+        Polinomios(operacao);
+    }
+ 
+    return 0;
 }
