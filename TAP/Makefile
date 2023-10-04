@@ -1,3 +1,3 @@
 all:
-	g++ I.cpp -o I
-	./I
+	gcc F.c -o F
+	./F
