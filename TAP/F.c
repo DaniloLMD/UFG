@@ -146,6 +146,7 @@ void LinkedList_addLast(LinkedList* L, int val){
 }
 
 void LinkedList_removeLast(LinkedList* L){
+
     //a lista ja esta vazia
     if(LinkedList_empty(L)) return;
 
@@ -173,11 +174,12 @@ void LinkedList_print(const LinkedList* L){
     }
 
     DNode *node_atual = L->begin;
+
     while(node_atual != NULL){  
-        printf("%d ", node_atual->val);
+        if(node_atual == L->begin) printf("%d", node_atual->val);
+        else printf(" %d", node_atual->val);
         node_atual = node_atual->next;
     }
-    printf("\n");
 }
 
 unsigned long int LinkedList_size(const LinkedList* L){
@@ -190,18 +192,35 @@ bool LinkedList_empty(LinkedList* L){
 
 
 
-//faltam: removeLast, 
 
 /*              FUNCOES PRA NAVEGAR             */
 int inicio, fim;
 LinkedList *caminho;
 
+bool checa_filhos(TreeNode* node_atual){
+    //verificando se o no atual tem algum filho ainda nao visitado
+    int filhos_nao_visitados = 0;
+    for(int c = 0; c < node_atual->qtd_filhos; c++){
+        if(node_atual->filhos[c]->visitado == 0){
+            filhos_nao_visitados++;
+        }
+    }
+
+    if(filhos_nao_visitados == 0){
+        return 0; //nao tem filhos validos
+    }
+    else return 1; //tem ao menos um filho valido
+}
+
 void busca(TreeNode* node_atual){
 
     node_atual->visitado = 1;
 
-    //verificando se o no atual tem algum filho
-    if(node_atual->qtd_filhos == 0){
+    //verificando se o caminho ja esta completo
+    if(caminho->end->val == fim) return;
+
+    //verificando se ele tem filhos validos
+    if(checa_filhos(node_atual) == 0){
         LinkedList_removeLast(caminho);
         return;
     }
@@ -218,7 +237,14 @@ void busca(TreeNode* node_atual){
     for(int c = 0; c < node_atual->qtd_filhos; c++){
         if(node_atual->filhos[c]->visitado == 0){
             LinkedList_addLast(caminho, node_atual->filhos[c]->val);
+            
             busca(node_atual->filhos[c]);
+
+            if(caminho->end->val == fim) return;
+
+            if(checa_filhos(node_atual) == 0 && caminho->end->val != fim){
+                LinkedList_removeLast(caminho);
+            }
         }
     }
 }
@@ -260,6 +286,7 @@ int main(){
     busca(T->inicio);
 
     LinkedList_print(caminho);
-
+    LinkedList_destroy(&caminho);
+    printf("\n");
     return 0;
 }
