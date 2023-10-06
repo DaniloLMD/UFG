@@ -1,47 +1,69 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <stdio.h>
 
 using namespace std;
 
 int main(){
-    int qtd;
-    string pessoas;
-    int peso_atual = 0, maior_peso = 0, peso_certo;
-    int acertos = 0, maior_acertos = 0;
 
-    cin >> qtd;
+    vector<long int> adultos(0);
+    vector<long int> criancas(0);
+    string pessoas;    
+    long int qtd_pessoas;
+    long int peso;
+    long int maior_acertos = 0;
+    long int crianca_atual = 0, criancas_leves = 0;
+
+    cin >> qtd_pessoas;
     cin >> pessoas;
 
-    vector<int> peso(qtd);
-    vector<int> peso_criancas(qtd);
-    vector<int> peso_adultos(qtd);
+    for(int c  = 0; c < qtd_pessoas; c++){
+        cin >> peso;
 
-    for(int i = 0; i < qtd; i++){
-        cin >> peso[i];
-        if(peso[i] > maior_peso) maior_peso = peso[i];
-    }
-
-    for(peso_atual = 0; peso_atual <= maior_peso + 1; peso_atual++){
-
-        acertos = 0;
-        for(int i = 0; i < qtd; i++){
-            if(pessoas[i] == '0' && peso[i] < peso_atual){
-                acertos++;
-            }
-            else if(pessoas[i] == '1' && peso[i] >= peso_atual){
-                acertos++;  
-            }
-        }
-
-        if(acertos > maior_acertos){
-            maior_acertos = acertos;
-            peso_certo = peso_atual;
+        if(pessoas[c] == '0'){ //crianca
+            criancas.push_back(peso);
+        }else if(pessoas[c] == '1'){ // adulto
+            adultos.push_back(peso);
         }
     }
 
-    cout << maior_acertos << endl;
+    sort(criancas.begin(), criancas.end());
+    sort(adultos.begin(), adultos.end());
 
-    
+    //checando se tem apenas adultos
+    if(criancas.size() == 0){
+        cout << adultos.size() << endl;
+    }
+    //checando se tem apenas criancas
+    else if(adultos.size() == 0){
+        cout << criancas.size() << endl;
+    }
+    else{
+        for(int c = 0; c < adultos.size(); c++){
+
+            for(int c2 = crianca_atual; c2 < criancas.size(); c2++){
+                //verificando se a crianca atual e mais pesada
+                if(criancas[c2] >= adultos[c]){
+                    break;
+                }
+                //aumentando a quantidade de criancas mais leves
+                else{
+                    criancas_leves++;
+                }
+
+                crianca_atual++;
+            }
+            //maior acertos = quantidade de adultos + quantidade de criancas leves - quantidade de adultos verificados
+            if(adultos.size() + criancas_leves - c >= maior_acertos){
+                maior_acertos = adultos.size() + criancas_leves - c;
+            }
+
+        }
+
+        cout << maior_acertos << endl;
+    }
+
 
 
 
