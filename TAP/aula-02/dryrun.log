@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/danilolmd/Desktop/UFG/TAP/aula-02'
+g++ d2.cpp -o d2
+./d2
+make: Leaving directory '/home/danilolmd/Desktop/UFG/TAP/aula-02'
+ 
