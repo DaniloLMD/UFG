@@ -4,11 +4,6 @@
 
 using namespace std;
 
-/*     .     
-    AB#ABC
-
-*/
-
 vector<int> z_func(string &palavra, string &padrao){
     string nova = padrao+'#'+palavra;
     int tam = nova.size();
@@ -35,8 +30,8 @@ int main(){
     int qtd = 0;
     string palavra, padrao, nova;
     cin >> palavra >> padrao;
-    //nova = padrao + '#' + palavra;
     vector<int> checa = z_func(palavra, padrao);
+    
     for(int h: checa){
         if(h == padrao.size()){
             qtd++;
