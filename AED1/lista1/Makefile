@@ -1,3 +1,3 @@
 all:	
-	g++ ex5.cpp -o ex5
-	./ex5
+	gcc ex8.c -o ex8
+	./ex8
