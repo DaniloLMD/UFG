@@ -1,32 +1,47 @@
+//questao 12
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-int n = 3;
+void labirinto(vector<vector<vector<int>>>& lab, int i_atual, int j_atual, vector<vector<bool>>& visitados){
+    if(i_atual == 0 && j_atual == 0){
+        cout << "VENCE\n";
+        return;
+    }
+    else if(visitados[i_atual][j_atual] == true){
+        cout << "PRESO\n";
+        return;
+    }
 
-vector<vector<vector<int>>> matrix3d (n, vector<vector<int>>(n, vector<int>(n)));
+    int i, j;
+    visitados[i_atual][j_atual] = true;
+    i = lab[i_atual][j_atual][0];
+    j = lab[i_atual][j_atual][1];
+
+    labirinto(lab, i, j, visitados);
+}
+
 
 int main(){
 
-    for(int c = 0; c < n; c++){
-        for(int d = 0; d < n; d++){
-            for(int e = 0; e < n; e++){
-                matrix3d[c][d][e] = c + d + e;
-            }
-        }
-    }
-    cout << endl;
+    int i, j, i_atual, j_atual;
+    cin >> i >> j;
 
-    for(int c = 0; c < n; c++){
-        for(int d = 0; d < n; d++){
-            for(int e = 0; e < n; e++){
-                cout << matrix3d[c][d][e] << ' ';
+    vector<vector<vector<int>>> matrix3d (i, vector<vector<int>>(j, vector<int>(2)));
+    vector<vector<bool>> visitados(i, vector<bool>(j));
+
+    for(int c = 0; c < i; c++){
+        for(int d = 0; d < j; d++){
+            for(int e = 0; e < 2; e++){
+                cin >> matrix3d[c][d][e];
             }
-            cout << endl;
         }
-        cout << endl;
     }
+    
+    cin >> i_atual >> j_atual;
+
+    labirinto(matrix3d, i_atual, j_atual, visitados);
 
     return 0;
 }

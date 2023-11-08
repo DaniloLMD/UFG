@@ -1,4 +1,4 @@
-
+//questao 3
 #include <iostream>
 
 using namespace std;
@@ -14,7 +14,6 @@ int fack(int m, int n){
         return fack(m-1, fack(m, n-1));
     }
 }
-
 int main(){
     int m, n;
 

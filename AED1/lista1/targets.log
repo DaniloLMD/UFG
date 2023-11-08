@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Oct  9 11:10:13 2023
+# Make data base, printed on Wed Oct 18 21:13:03 2023
 
 # Variables
 
@@ -45,7 +45,7 @@ PWD = /home/danilolmd/Desktop/UFG/AED1/lista1
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
-OLDPWD = /home/danilolmd/Desktop/UFG/AED1
+OLDPWD = /home/danilolmd/Desktop
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # automatic
@@ -55,13 +55,13 @@ VSCODE_CODE_CACHE_PATH = /home/danilolmd/.config/Code/CachedData/abd2f3db4bdb28f
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.VVQZC2
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.1QOAD2
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.139
+GNOME_TERMINAL_SERVICE = :1.101
 # makefile
 MAKEFLAGS = pqrR
 # makefile
@@ -91,13 +91,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 6465
+VSCODE_PID = 4934
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Danilo-Ubuntu:@/tmp/.ICE-unix/1576,unix/Danilo-Ubuntu:/tmp/.ICE-unix/1576
+SESSION_MANAGER = local/Danilo-Ubuntu:@/tmp/.ICE-unix/1593,unix/Danilo-Ubuntu:/tmp/.ICE-unix/1593
 # automatic
 *F = $(notdir $*)
 # environment
@@ -121,7 +121,7 @@ XMODIFIERS = @im=ibus
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/eb1f7d87_095d_4477_99bd_b3a8ebe6fe62
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/be2e6d63_bfda_4075_ac52_d6a97d159c2f
 # environment
 MAKELEVEL := 0
 # default
@@ -163,7 +163,7 @@ LOGNAME = danilolmd
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1835
+SYSTEMD_EXEC_PID = 1833
 # environment
 DISPLAY = :0
 # environment
@@ -229,20 +229,29 @@ LC_IDENTIFICATION = pt_BR.UTF-8
 
 # Directories
 
-# . (device 66311, inode 1535020): 26 files, no impossibilities.
+# . (device 66311, inode 1535020): 31 files, no impossibilities.
 
-# 26 files, no impossibilities in 1 directories.
+# 31 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
+ 
 # Files
+
+a:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 6):
+	g++ teste.cpp -o teste
+	./teste
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-10-06 11:27:31.388185932
+#  Last modified 2023-10-16 21:02:44.940038475
 #  File has been updated.
 #  Successfully updated.
 
@@ -278,8 +287,8 @@ all:
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/11=9%
 #  recipe to execute (from 'Makefile', line 2):
-	g++ ex5.cpp -o ex5
-	./ex5
+	g++ ex7.cpp -o ex7
+	./ex7
 
 # Not a target:
 .SUFFIXES:
@@ -288,20 +297,19 @@ all:
 #  File has not been updated.
 
 # files hash-table stats:
- 
-# Load=4/1024=0%, Rehash=0, Collisions=0/16=0%
+# Load=5/1024=0%, Rehash=0, Collisions=0/17=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 31 / storage = 212 B / avg = 6 B
-# current buf: size = 8162 B / used = 212 B / count = 31 / avg = 6 B
+# strcache buffers: 1 (0) / strings = 36 / storage = 255 B / avg = 7 B
+# current buf: size = 8162 B / used = 255 B / count = 36 / avg = 7 B
 
-# strcache performance: lookups = 38 / hit rate = 18%
+# strcache performance: lookups = 45 / hit rate = 20%
 # hash-table stats:
-# Load=31/8192=0%, Rehash=0, Collisions=0/38=0%
-# Finished Make data base on Mon Oct  9 11:10:13 2023
+# Load=36/8192=0%, Rehash=0, Collisions=0/45=0%
+# Finished Make data base on Wed Oct 18 21:13:03 2023
 
  

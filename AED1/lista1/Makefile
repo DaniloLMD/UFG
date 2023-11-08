@@ -1,3 +1,6 @@
-all:	
-	gcc ex8.c -o ex8
-	./ex8
+all:
+	g++ ex14.cpp -o ex14
+
+a:
+	g++ teste.cpp -o teste
+	./teste

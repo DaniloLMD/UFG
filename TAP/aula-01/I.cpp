@@ -11,6 +11,7 @@ int main(){
     vector<long int> eixos_x(n-1);
     vector<long int> eixos_y(m-1);
     cin >> anterior;
+    
     for(int c = 0; c < eixos_x.size(); c++){
         cin >> atual;
         eixos_x[c] = atual - anterior;

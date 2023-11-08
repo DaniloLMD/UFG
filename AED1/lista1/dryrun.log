@@ -1,6 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/danilolmd/Desktop/UFG/AED1/lista1'
-g++ ex5.cpp -o ex5
-./ex5
+g++ ex7.cpp -o ex7
+./ex7
 make: Leaving directory '/home/danilolmd/Desktop/UFG/AED1/lista1'
  
