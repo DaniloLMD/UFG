@@ -30,7 +30,8 @@ Data Data_subtrai_dias(Data d, unsigned int dias);
 
 //9
 
-//10
+//10 retorna TRUE ou FALSE se o ano da data e bissexto
+bool Data_bissex(Data d);
 
 //11
 

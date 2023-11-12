@@ -31,6 +31,14 @@ Data Data_soma_dias(Data d, unsigned int dias){
 
     while(dias--){
         new_data->dia++;
+
+        if(Data_bissex(new_data)){
+                meses[1] = 29;
+        }
+        else{
+            meses[1] = 28;
+        }
+        
         if(new_data->dia > meses[new_data->mes - 1]){
             new_data->dia = 1;
             new_data->mes++;
@@ -56,6 +64,13 @@ Data Data_subtrai_dias(Data d, unsigned int dias){
             if(new_data->mes == 0){
                 new_data->mes = 12;
                 new_data->ano--;
+            }
+        
+            if(Data_bissex(new_data)){
+                meses[1] = 29;
+            }
+            else{
+                meses[1] = 28;
             }
 
 
@@ -110,3 +125,11 @@ char* Data_format(Data d, char* formato){
     str[10] = '\0';
     return str;
 }
+
+bool Data_bissex(Data d){
+
+    if((d->ano % 4 == 0 && d->ano % 100 != 0) || d->ano % 400 == 0) return true;
+
+    return false;
+}
+
