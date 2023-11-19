@@ -263,7 +263,7 @@ bool Conjunto_copy(Conjunto C1, Conjunto* C2_ref){
     Conjunto C2 = *C2_ref;
 
     free(C2->data);
-    C2->data = (int*) malloc(0);
+    C2->data = NULL;
     C2->cardinalidade = 0;
     
     int valor;
