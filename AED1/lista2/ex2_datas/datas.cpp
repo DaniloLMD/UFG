@@ -251,5 +251,5 @@ unsigned int Data_dia_semana(Data d){
 
     resultado = d->dia + (13 * mes - 1) / 5 + ano_a + ano_a/4 + ano_c/4 + 5 * ano_c;
 
-    return (resultado) % 7+1;
+    return (resultado) % 7 + 1;
 }
