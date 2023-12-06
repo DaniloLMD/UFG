@@ -53,6 +53,6 @@ unsigned int Data_numero_anos(Data d1, Data d2);
 unsigned int Data_dia_semana(Data d);
 
 //16 recebe um formato de data (ex ddmmaa) e retorna uma string formatada com a data dd/mm/aa
-char* Data_format(Data d, char* formato);
+char* Data_format(Data d, const char* formato);
 
 #endif

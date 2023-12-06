@@ -95,7 +95,7 @@ Data Data_subtrai_dias(Data d, unsigned int dias){
     return new_data;
 }
 
-char* Data_format(Data d, char* formato){
+char* Data_format(Data d, const char* formato){
     char *str = (char*) malloc(11 * sizeof(char));
     char carac;
     int pd, pm, pa, index = 0;
