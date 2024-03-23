@@ -5,10 +5,10 @@
 using namespace std;
 
 int qtd_vetores = 10; //quantidade de vetores
-int num_elementos = 1e4; //numero de elementos de cada vetor
-int num_elementos_busca = 1e3; //numero de elementos a serem buscados(sequencialmente e binariamente)
-int min_num = 1; //menor numero possivel que pode ser gerado aleatoriamente
-int max_num = 1e4; //maior numero possivel que pode ser gerado aleatoriamente
+int num_elementos = 1e1; //numero de elementos de cada vetor
+int num_elementos_busca = 1e0; //numero de elementos a serem buscados(sequencialmente e binariamente)
+long long int min_num = 1; //menor numero possivel que pode ser gerado aleatoriamente
+long long int max_num = 1e12; //maior numero possivel que pode ser gerado aleatoriamente
 
 int gera_aleatorio(); //funcao que gera um numero aleatorio entre o intervalo [min_num , max_num]
 
@@ -42,7 +42,7 @@ int main(){
     }
     time(&fim);
     tempo = double((double)fim - (double)inicio);
-    printf("Intervalo de numeros aleatorios: [%d , %d]\n", min_num, max_num);
+    printf("Intervalo de numeros aleatorios: [%lld , %lld]\n", min_num, max_num);
     printf("Tempo para gerar %d vetores com %d numeros aleatorios: %.10lf segundos\n", qtd_vetores, num_elementos, tempo);
 
     //gerando os numeros a serem buscados
@@ -65,14 +65,7 @@ int main(){
     printf("Numeros achados = %d\n", achados);
     printf("\n\n");
 
-    time(&inicio);
-    achados = busca_binaria(vetores, vetor_busca);
-    time(&fim);
-    tempo = double(fim - inicio);
-    printf("Tempo total (busca e ordenacao) gasto pela busca binaria em %d vetores de %d elementos: %.10lf segundos\n", qtd_vetores, num_elementos, tempo);
-    printf("Numeros achados = %d\n", achados);
-
-    printf("\n");
+    printf("\n\n");
     time(&inicio);
     CountingSort(vetores[0]);
     time(&fim);
@@ -87,6 +80,13 @@ int main(){
     time(&fim);
     tempo = double(fim - inicio);
     printf("Tempo gasto pelo Counting Sort para ordenar %d vetores de %d elementos: %.10lf segundos\n", qtd_vetores,num_elementos, tempo);
+    time(&inicio);
+    achados = busca_binaria(vetores, vetor_busca);
+    time(&fim);
+    tempo = double(fim - inicio);
+    printf("Tempo total (busca e ordenacao) gasto pela busca binaria em %d vetores de %d elementos: %.10lf segundos\n", qtd_vetores, num_elementos, tempo);
+    printf("Numeros achados = %d\n", achados);
+
 
     return 0;   
 }
